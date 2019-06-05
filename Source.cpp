@@ -16,12 +16,17 @@ bool prompt();
 string get_string();
 
 int main(int argc, char *argv[]) {
-	Table data;
+	Table t;
     try {
-        data.read( argv[1] );
+        if ( argc == 1 )
+            throw "No input file given.";
+        if ( argc < 2 )
+            throw "Too many arguments given.";
+        t.read( argv[1] );
     }
     catch ( const string &error ) {
         cout << error << endl;
+        return -1;
     }
 
     bool cont = true;
@@ -29,8 +34,8 @@ int main(int argc, char *argv[]) {
     while ( cont ) {
         cont = prompt();
         if ( cont ) {
-            data.search( get_string() );
-            data.draw( cout );
+            t.search( get_string() );
+            t.draw( cout );
         }
     }
 
