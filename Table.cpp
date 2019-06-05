@@ -73,7 +73,11 @@ void Table::reset_found() {
 void Table::read(const string &file) {
 	ifstream input( file );
 
-    assert( input.is_open() );
+    if ( !input.is_open() ) {
+        string error;
+        error = "File " + file + " does not exist, or cannot be opened.";
+        throw error;
+    }
 
 	string buffer;
 
@@ -89,7 +93,11 @@ void Table::read(const string &file) {
     // after the line count of the file is determined
     input.close();
     input.open(file);
-    assert( input.is_open() );
+    if ( !input.is_open() ) {
+        string error;
+        error = "File " + file + " does not exist, or cannot be opened.";
+        throw error;
+    }
 
     // determines how many columns are needed
     getline( input, buffer );

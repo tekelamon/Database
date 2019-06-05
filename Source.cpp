@@ -17,17 +17,22 @@ string get_string();
 
 int main(int argc, char *argv[]) {
 	Table data;
-	data.read( argv[1] );
+    try {
+        data.read( argv[1] );
+    }
+    catch ( const string &error ) {
+        cout << error << endl;
+    }
 
     bool cont = true;
 
-    do {
+    while ( cont ) {
         cont = prompt();
         if ( cont ) {
             data.search( get_string() );
             data.draw( cout );
         }
-    } while ( cont );
+    }
 
 	return 0;
 }
