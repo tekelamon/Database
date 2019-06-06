@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     try {
         if ( argc == 1 )
             throw "No input file given.";
-        if ( argc < 2 )
+        if ( argc > 2 )
             throw "Too many arguments given.";
         t.read( argv[1] );
     }
